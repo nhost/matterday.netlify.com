@@ -7,7 +7,7 @@
   /*justify-content: flex-end;*/
   /*gap: 1em;*/
   font-family: var(--font-headline);
-  font-size: clamp(.9em, 2vw, 1.1em);
+  font-size: clamp(0.9em, 2vw, 1.1em);
   font-weight: 200;
   line-height: 1;
   z-index: var(--header-z);
@@ -22,7 +22,7 @@
   margin-right: auto;
   display: flex;
   align-items: center;
-  gap: .6rem;
+  gap: 0.6rem;
 }
 
 .header-main .masthead {
@@ -42,7 +42,7 @@
 .header-main a.logo {
   position: absolute;
   height: var(--logo-h);
-  transition: transform .2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .header-main a.logo img {
@@ -56,10 +56,20 @@
 
 /* to accommodate sometimes having scrollbars */
 .header-main a.logo.netlify {
-  left: calc((100vw - (var(--share-anchor-w) + var(--body-padding)) - var(--netlify-logo-w) - var(--supabase-logo-w) - (var(--logo-h) * .5)));
+  left: calc(
+    (
+      100vw - (var(--share-anchor-w) + var(--body-padding)) - var(--netlify-logo-w) -
+        var(--supabase-logo-w) - (var(--logo-h) * 0.5)
+    )
+  );
 }
 .header-main a.logo.supabase {
-  left: calc((100vw - (var(--share-anchor-w) + var(--body-padding)) - var(--supabase-logo-w) - (var(--logo-h) * .2)));
+  left: calc(
+    (
+      100vw - (var(--share-anchor-w) + var(--body-padding)) - var(--supabase-logo-w) -
+        (var(--logo-h) * 0.2)
+    )
+  );
 }
 
 @media screen and (max-width: 400px) {
@@ -71,9 +81,11 @@
     overflow: hidden;
   }
   .header-main a.logo.netlify {
-    left: calc((100vw - (var(--share-anchor-w) + var(--body-padding)) - (var(--logo-h) * 2 + 1.5rem)));
+    left: calc(
+      (100vw - (var(--share-anchor-w) + var(--body-padding)) - (var(--logo-h) * 2 + 1.5rem))
+    );
   }
   .header-main a.logo.supabase {
-    left: calc((100vw - (var(--share-anchor-w) + var(--body-padding)) - (var(--logo-h) + .8rem)));
+    left: calc((100vw - (var(--share-anchor-w) + var(--body-padding)) - (var(--logo-h) + 0.8rem)));
   }
 }

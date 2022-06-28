@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.35.3",
+    "@nhost/nextjs": "^1.5.0",
+    "@nhost/nhost-js": "^1.4.2",
+    "@nhost/react": "^0.10.0",
     "bad-words": "^3.0.4",
+    "graphql": "^16.5.0",
+    "graphql-tag": "^2.12.6",
     "next": "12.1.6",
-    "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "8.15.0",

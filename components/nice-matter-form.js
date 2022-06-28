@@ -1,96 +1,93 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import supabase from "utils/supabase";
-import { useUser } from "context/user";
-import Filter from "bad-words";
-import Link from "next/link";
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Filter from 'bad-words'
+import Link from 'next/link'
+import { nhost } from 'utils/nhost'
+import gql from 'graphql-tag'
 
 const MatterForm = () => {
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [matter, setMatter] = useState("");
-  const [isRude, setIsRude] = useState(false);
-  const filter = new Filter();
-  const router = useRouter();
-  const user = useUser();
-  const userAvatar = user?.user?.user_metadata?.avatar_url || null;
-  const username = user?.user?.user_metadata?.user_name || null;
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [matter, setMatter] = useState('')
+  const [isRude, setIsRude] = useState(false)
+  const filter = new Filter()
+  const router = useRouter()
+
+  const user = nhost.auth.getUser()
+
+  const avatarUrl = user.avatarUrl || null
+  const displayName = user.displayName || null
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setError(null);
-    setIsLoading(true);
+    setError(null)
+    setIsLoading(true)
 
-    const { matter } = Object.fromEntries(new FormData(e.target));
+    const { matter } = Object.fromEntries(new FormData(e.target))
 
-    const { data, error } = await supabase.from("matters").insert({
-      content: matter,
-      content_encoded: escape(encodeURIComponent(matter)),
-    });
+    const INSERT_MATTER = gql`
+      mutation insertMatter($matter: matters_insert_input!) {
+        insert_matters_one(object: $matter) {
+          id
+        }
+      }
+    `
 
-    setIsLoading(false);
+    const { data, error } = await nhost.graphql.request(INSERT_MATTER, {
+      matter: {
+        content: matter
+      }
+    })
+
+    setIsLoading(false)
 
     if (error) {
-      setError(error.message);
-      return;
+      setError(error.message)
+      return
     }
 
-    const [newMatter] = data;
+    const newMatter = data.insert_matters_one
 
-    router.push(`/matters/${newMatter.id}`);
-  };
+    router.push(`/matters/${newMatter.id}`)
+  }
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-  };
+    await nhost.auth.signOut()
+  }
 
-  filter.removeWords('butt', 'fart');
+  filter.removeWords('butt', 'fart')
 
   const handleChange = (e) => {
-    setIsRude(false);
-    setError(null);
+    setIsRude(false)
+    setError(null)
 
-    const matter = e.currentTarget.value;
-    setMatter(matter);
+    const matter = e.currentTarget.value
+    setMatter(matter)
 
     if (filter.isProfane(matter)) {
-      setIsRude(true);
+      setIsRude(true)
       setError(
-        "Whoops, you did a swear! Let’s keep it family-friendly, kind, and inclusive please."
-      );
+        'Whoops, you did a swear! Let’s keep it family-friendly, kind, and inclusive please.'
+      )
     }
-  };
+  }
 
   return (
     <div className="logged-in">
       <span className="authentication">
-        {username && userAvatar ? (
-          <img
-            src={userAvatar}
-            className="gh-avatar"
-            alt={username}
-            width="100"
-            height="100"
-          />
+        {displayName && avatarUrl ? (
+          <img src={avatarUrl} className="gh-avatar" alt={displayName} width="100" height="100" />
         ) : null}
-        {username ? <span className="github-username">@{username}</span> : null}
+        {displayName ? <span className="github-username">@{displayName}</span> : null}
         <button className="text" onClick={handleSignOut}>
           Log out
         </button>
       </span>
       <form onSubmit={handleSubmit} disabled={isLoading || isRude}>
         <fieldset>
-          <label htmlFor="matter">
-            If I had an extra day a week I could...
-          </label>
-          <input
-            type="text"
-            name="matter"
-            maxLength={28}
-            onChange={handleChange}
-            value={matter}
-          />
+          <label htmlFor="matter">If I had an extra day a week I could...</label>
+          <input type="text" name="matter" maxLength={28} onChange={handleChange} value={matter} />
           <footer>
             <small className="characters">limit 28 characters</small>
             <button type="submit" disabled={isLoading || isRude}>
@@ -102,14 +99,14 @@ const MatterForm = () => {
       </form>
       <div className="nudge">
         <p>
-          Need some inspiration?{" "}
+          Need some inspiration?{' '}
           <Link href="/matters">
             <a>See what others are saying.</a>
           </Link>
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MatterForm;
+export default MatterForm

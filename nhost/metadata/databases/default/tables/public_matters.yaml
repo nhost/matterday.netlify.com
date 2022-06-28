@@ -1,0 +1,44 @@
+table:
+  name: matters
+  schema: public
+object_relationships:
+- name: user
+  using:
+    foreign_key_constraint_on: user_id
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - content
+    set:
+      user_id: x-hasura-user-id
+  role: user
+select_permissions:
+- permission:
+    columns:
+    - content
+    - created_at
+    - id
+    - status
+    - updated_at
+    - user_id
+    filter:
+      status:
+        _eq: approved
+  role: public
+- permission:
+    columns:
+    - id
+    - created_at
+    - updated_at
+    - content
+    - user_id
+    - status
+    filter:
+      _or:
+      - user_id:
+          _eq: X-Hasura-User-Id
+      - status:
+          _eq: approved
+  role: user

@@ -1,12 +1,12 @@
-import supabase from "utils/supabase";
-import Link from "next/link";
+import Link from 'next/link'
+import { nhost } from 'utils/nhost'
 
 const NiceSignInForm = () => {
   const handleSignIn = async () => {
-    await supabase.auth.signIn({
-      provider: "github",
-    });
-  };
+    await nhost.auth.signIn({
+      provider: 'github'
+    })
+  }
 
   return (
     <div className="not-logged-in">
@@ -19,11 +19,14 @@ const NiceSignInForm = () => {
       </div>
       <div className="nudge">
         <p>
-          Need some inspiration? <Link href="/matters"><a>See what others are saying.</a></Link>
+          Need some inspiration?{' '}
+          <Link href="/matters">
+            <a>See what others are saying.</a>
+          </Link>
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NiceSignInForm;
+export default NiceSignInForm

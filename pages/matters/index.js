@@ -1,24 +1,37 @@
-import supabase from "utils/supabase";
-import NiceMattersGrid from "components/nice-matters-grid";
+import { nhost } from 'utils/nhost'
+import gql from 'graphql-tag'
+
+import NiceMattersGrid from 'components/nice-matters-grid'
 
 const Matters = ({ matters }) => {
-  return <NiceMattersGrid matters={matters} />;
-};
+  return <NiceMattersGrid matters={matters} />
+}
 
 export const getStaticProps = async () => {
-  const { data: matters } = await supabase
-    .from("matters_with_user")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(1000)
-    .match({ status: "approved" });
+  const GET_MATTERS = gql`
+    query {
+      matters(order_by: { created_at: asc }, limit: 1000) {
+        id
+        content
+        user {
+          id
+          avatarUrl
+          displayName
+        }
+      }
+    }
+  `
+
+  const {
+    data: { matters }
+  } = await nhost.graphql.request(GET_MATTERS)
 
   return {
     props: {
-      matters,
+      matters
     },
-    revalidate: 60,
-  };
-};
+    revalidate: 60
+  }
+}
 
-export default Matters;
+export default Matters

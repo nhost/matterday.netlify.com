@@ -1,10 +1,10 @@
-import { useUser } from "context/user";
-import NiceMatterForm from "components/nice-matter-form";
-import NiceSignInForm from "components/nice-sign-in-form";
+import NiceMatterForm from 'components/nice-matter-form'
+import NiceSignInForm from 'components/nice-sign-in-form'
+import { useAuthenticationStatus } from '@nhost/nextjs'
 
 const Form = () => {
-  const { user } = useUser();
-  return user ? <NiceMatterForm /> : <NiceSignInForm />;
-};
+  const { isAuthenticated } = useAuthenticationStatus()
+  return isAuthenticated ? <NiceMatterForm /> : <NiceSignInForm />
+}
 
-export default Form;
+export default Form

@@ -8,9 +8,9 @@
   align-self: end;
   display: flex;
   grid-column: 1 / -1;
-  background-color: rgba(0,0,0,.15);
-  -webkit-backdrop-filter: blur(.13em);
-  backdrop-filter: blur(.13em);
+  background-color: rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(0.13em);
+  backdrop-filter: blur(0.13em);
   font-size: 90%;
   color: var(--color-gray-L300);
 }
@@ -32,7 +32,7 @@
     flex-basis: 100%;
   }
   .credit > :not(:last-child) {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -42,14 +42,14 @@
   text-align: center;
 }
 
-.supabase-mark,
+.nhost-mark,
 .netlify-mark {
   padding-right: 1.3em;
   position: relative;
 }
 
 .netlify-mark::after,
-.supabase-mark::after {
+.nhost-mark::after {
   content: '';
   width: 1em;
   height: 1em;
@@ -64,8 +64,8 @@
 .netlify-mark::after {
   background-image: url('/images/logomark-netlify.svg');
 }
-.supabase-mark::after {
-  background-image: url('/images/logomark-supabase.svg');
+.nhost-mark::after {
+  background-image: url('/images/logomark-nhost.svg');
 }
 
 .calculate {
