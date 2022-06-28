@@ -4,9 +4,6 @@ import Header from './header'
 import ShareAnchor from './share-anchor'
 
 const NiceMattersGrid = ({ matters }) => {
-  console.log('render nice matters grid')
-  console.log(matters)
-
   return (
     <>
       <Head>

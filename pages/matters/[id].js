@@ -1,4 +1,3 @@
-import { NextPageContext } from 'next'
 import gql from 'graphql-tag'
 
 import { nhost } from 'utils/nhost'
@@ -51,15 +50,6 @@ export async function getServerSideProps(context) {
       headers
     }
   )
-
-  console.log('error')
-  console.log(error)
-
-  // console.log('data')
-  // console.log(data)
-
-  console.log('matter')
-  console.log(matter)
 
   return {
     props: {

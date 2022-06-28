@@ -1,11 +1,10 @@
-import Head from "next/head";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import Header from "./header";
-import ShareAnchor from "./share-anchor";
+import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import Header from './header'
+import ShareAnchor from './share-anchor'
 
-// Form component requires a user that is stored in localStorage
-const Form = dynamic(() => import("components/form"), { ssr: false });
+const Form = dynamic(() => import('components/form'), { ssr: false })
 
 const NiceLandingPage = () => {
   return (
@@ -13,8 +12,14 @@ const NiceLandingPage = () => {
       <Head>
         <meta content="https://matterday.netlify.com" property="og:url" />
         <meta content="https://matterday.netlify.com" property="twitter:url" />
-        <meta content="https://matterday.netlify.com/images/matterday-og-default.png" property="og:image" />
-        <meta content="https://matterday.netlify.com/images/matterday-og-default.png" name="twitter:image" />
+        <meta
+          content="https://matterday.netlify.com/images/matterday-og-default.png"
+          property="og:image"
+        />
+        <meta
+          content="https://matterday.netlify.com/images/matterday-og-default.png"
+          name="twitter:image"
+        />
       </Head>
       <ShareAnchor />
       <div className="parallax">
@@ -86,7 +91,16 @@ const NiceLandingPage = () => {
           <div className="parallax-layer background">
             <div className="content">
               <h1>What if you had an extra day a week?</h1>
-              <p>Netlify saves development teams <a href="https://www.netlify.com/resources/ebooks/accelerate-digital-growth-with-netlify/?utm_campaign=website_launch_2022_05_rework_your_workweek&utm_content=matterday" id="cta-intro">a work day per week</a> so they can spend that time on what matters.</p>
+              <p>
+                Netlify saves development teams{' '}
+                <a
+                  href="https://www.netlify.com/resources/ebooks/accelerate-digital-growth-with-netlify/?utm_campaign=website_launch_2022_05_rework_your_workweek&utm_content=matterday"
+                  id="cta-intro"
+                >
+                  a work day per week
+                </a>{' '}
+                so they can spend that time on what matters.
+              </p>
               <p>What could you do with it?</p>
             </div>
           </div>
@@ -137,26 +151,59 @@ const NiceLandingPage = () => {
             <div className="content">
               <h2>Maybe you could slow down.</h2>
               <p>You first need time before you can “take your time.”</p>
-              <p>When you’re not in a rush, you can sweat the details, put in that extra bit of care and attention that takes things from good to great.</p>
+              <p>
+                When you’re not in a rush, you can sweat the details, put in that extra bit of care
+                and attention that takes things from good to great.
+              </p>
               <p>Smelling the roses can lead to inspired serendipity.</p>
             </div>
           </div>
         </section>
         <section className="parallax-group pieces slow-down-pieces">
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/stopwatch.svg" width="400" height="400" alt="stopwatch" className="watch" />
+            <img
+              src="/images/stopwatch.svg"
+              width="400"
+              height="400"
+              alt="stopwatch"
+              className="watch"
+            />
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/rose-purple.svg" width="218" height="204" alt="purple rose" className="rose rose1" />
+            <img
+              src="/images/rose-purple.svg"
+              width="218"
+              height="204"
+              alt="purple rose"
+              className="rose rose1"
+            />
           </div>
           <div className="parallax-layer foreground layer-3">
-            <img src="/images/rose-purple.svg" width="218" height="204" alt="purple rose" className="rose rose2"  />
+            <img
+              src="/images/rose-purple.svg"
+              width="218"
+              height="204"
+              alt="purple rose"
+              className="rose rose2"
+            />
           </div>
           <div className="parallax-layer foreground layer-3">
-            <img src="/images/rose-purple.svg" width="218" height="204" alt="purple rose" className="rose rose3"  />
+            <img
+              src="/images/rose-purple.svg"
+              width="218"
+              height="204"
+              alt="purple rose"
+              className="rose rose3"
+            />
           </div>
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/rose-blue.svg" width="218" height="204" alt="blue rose" className="rose rose4"  />
+            <img
+              src="/images/rose-blue.svg"
+              width="218"
+              height="204"
+              alt="blue rose"
+              className="rose rose4"
+            />
           </div>
         </section>
         <section className="parallax-group focus">
@@ -169,14 +216,23 @@ const NiceLandingPage = () => {
             <div className="content">
               <h2>You could sharpen your focus.</h2>
               <p>With more time, less needs to happen at once.</p>
-              <p>So much benefits from devoted attention (and not just our work). We can spend more time on our health, our passions, and our relationships.</p>
+              <p>
+                So much benefits from devoted attention (and not just our work). We can spend more
+                time on our health, our passions, and our relationships.
+              </p>
             </div>
           </div>
         </section>
         <section className="parallax-group pieces focus-pieces">
           <div className="parallax-layer foreground layer-1">
             <div className="shapes-container">
-              <img src="/images/shapes.svg" width="197" height="345" className="shapes" alt="geometric shapes" />
+              <img
+                src="/images/shapes.svg"
+                width="197"
+                height="345"
+                className="shapes"
+                alt="geometric shapes"
+              />
             </div>
           </div>
         </section>
@@ -191,9 +247,20 @@ const NiceLandingPage = () => {
               <div className="background-artwork"></div>
             </div>
             <div className="content">
-              <h2>The time really <a href="https://www.netlify.com/roi-calculator/?utm_campaign=2022_06_roi_calculator_launch&utm_content=matterday" id="cta-adds-up">adds up</a>.</h2>
+              <h2>
+                The time really{' '}
+                <a
+                  href="https://www.netlify.com/roi-calculator/?utm_campaign=2022_06_roi_calculator_launch&utm_content=matterday"
+                  id="cta-adds-up"
+                >
+                  adds up
+                </a>
+                .
+              </h2>
               <p>How much total time are we really talking here?</p>
-              <p>One work day saved per week means 52 days (416 hours or 24,960 minutes) per year.</p>
+              <p>
+                One work day saved per week means 52 days (416 hours or 24,960 minutes) per year.
+              </p>
               <p>In that time, you could...</p>
             </div>
           </div>
@@ -243,22 +310,48 @@ const NiceLandingPage = () => {
               <div className="background-artwork"></div>
             </div>
             <div className="content">
-              <h3>Watch all 9 seasons of <em>The Office</em> four times through.</h3>
+              <h3>
+                Watch all 9 seasons of <em>The Office</em> four times through.
+              </h3>
             </div>
           </div>
         </section>
         <section className="parallax-group pieces the-office-pieces">
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/the-office-jello.svg" width="237" height="148" alt="a stapler stuck in a Jello mold" className="jello" />
+            <img
+              src="/images/the-office-jello.svg"
+              width="237"
+              height="148"
+              alt="a stapler stuck in a Jello mold"
+              className="jello"
+            />
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/paper-airplane.svg" width="173" height="215" alt="paper airplane" className="airplane" />
+            <img
+              src="/images/paper-airplane.svg"
+              width="173"
+              height="215"
+              alt="paper airplane"
+              className="airplane"
+            />
           </div>
           <div className="parallax-layer foreground layer-3">
-            <img src="/images/the-office-mug.svg" width="160" height="145" alt="World’s Best Boss mug" className="mug" />
+            <img
+              src="/images/the-office-mug.svg"
+              width="160"
+              height="145"
+              alt="World’s Best Boss mug"
+              className="mug"
+            />
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/the-office-beet.svg" width="200" height="274" alt="a beet" className="beet" />
+            <img
+              src="/images/the-office-beet.svg"
+              width="200"
+              height="274"
+              alt="a beet"
+              className="beet"
+            />
           </div>
         </section>
         <section className="parallax-group space-mountain">
@@ -272,10 +365,15 @@ const NiceLandingPage = () => {
           </div>
         </section>
         <section className="parallax-group pieces space-mountain-pieces">
-          <div className="parallax-layer foreground layer-1 stars">
-          </div>
+          <div className="parallax-layer foreground layer-1 stars"></div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/rocket.svg" width="215" height="1051" alt="rocket ship" className="rocket" />
+            <img
+              src="/images/rocket.svg"
+              width="215"
+              height="1051"
+              alt="rocket ship"
+              className="rocket"
+            />
           </div>
         </section>
         <section className="parallax-group walking">
@@ -291,7 +389,13 @@ const NiceLandingPage = () => {
         </section>
         <section className="parallax-group pieces walking-pieces">
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/route.svg" width="800" height="1193" alt="dashed, winding path from one marker to another" className="route" />
+            <img
+              src="/images/route.svg"
+              width="800"
+              height="1193"
+              alt="dashed, winding path from one marker to another"
+              className="route"
+            />
           </div>
         </section>
         <section className="parallax-group get-more-rest">
@@ -302,28 +406,67 @@ const NiceLandingPage = () => {
             <div className="content">
               <h2>You could get more rest.</h2>
               <p>Afternoon naps 4 lyfe.</p>
-              <p>Just one more hour of sleep per day can significantly improve mood, productivity, and memory.</p>
+              <p>
+                Just one more hour of sleep per day can significantly improve mood, productivity,
+                and memory.
+              </p>
             </div>
           </div>
         </section>
         <section className="parallax-group pieces get-more-rest-pieces">
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/cloud1.svg" width="212" height="112" alt="cloud" className="cloud cloud1" />
+            <img
+              src="/images/cloud1.svg"
+              width="212"
+              height="112"
+              alt="cloud"
+              className="cloud cloud1"
+            />
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/cloud2.svg" width="190" height="112" alt="cloud" className="cloud cloud2" />
+            <img
+              src="/images/cloud2.svg"
+              width="190"
+              height="112"
+              alt="cloud"
+              className="cloud cloud2"
+            />
           </div>
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/pillow.svg" width="332" height="206" alt="pillow" className="pillow pillow1" />
+            <img
+              src="/images/pillow.svg"
+              width="332"
+              height="206"
+              alt="pillow"
+              className="pillow pillow1"
+            />
           </div>
           <div className="parallax-layer foreground layer-3">
-            <img src="/images/cloud3.svg" width="182" height="110" alt="cloud" className="cloud cloud3" />
+            <img
+              src="/images/cloud3.svg"
+              width="182"
+              height="110"
+              alt="cloud"
+              className="cloud cloud3"
+            />
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/cloud1.svg" width="212" height="112" alt="cloud" className="cloud cloud4" />
+            <img
+              src="/images/cloud1.svg"
+              width="212"
+              height="112"
+              alt="cloud"
+              className="cloud cloud4"
+            />
           </div>
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/cloud1.svg" width="212" height="112" alt="cloud" className="cloud cloud5" />
+            <img
+              src="/images/cloud1.svg"
+              width="212"
+              height="112"
+              alt="cloud"
+              className="cloud cloud5"
+            />
           </div>
         </section>
         <section className="parallax-group play">
@@ -333,26 +476,68 @@ const NiceLandingPage = () => {
             </div>
             <div className="content">
               <h2>You could play.</h2>
-              <p>Doing things just for fun can help us feel more motivated and creative in other aspects of our lives, too.</p>
-              <p>Like adding a <a href="https://www.netlify.com/?utm_campaign=website_launch_2022_05_rework_your_workweek&utm_content=matterday" id="cta-konami">Konami code Phil mode to your website</a>, just as a random example.</p>
+              <p>
+                Doing things just for fun can help us feel more motivated and creative in other
+                aspects of our lives, too.
+              </p>
+              <p>
+                Like adding a{' '}
+                <a
+                  href="https://www.netlify.com/?utm_campaign=website_launch_2022_05_rework_your_workweek&utm_content=matterday"
+                  id="cta-konami"
+                >
+                  Konami code Phil mode to your website
+                </a>
+                , just as a random example.
+              </p>
             </div>
           </div>
         </section>
         <section className="parallax-group pieces play-pieces">
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/lego-up.svg" width="70" height="122" alt="LEGO brick" className="lego lego1" />
+            <img
+              src="/images/lego-up.svg"
+              width="70"
+              height="122"
+              alt="LEGO brick"
+              className="lego lego1"
+            />
           </div>
           <div className="parallax-layer foreground layer-3">
-            <img src="/images/lego-up.svg" width="70" height="122" alt="LEGO brick" className="lego lego2" />
+            <img
+              src="/images/lego-up.svg"
+              width="70"
+              height="122"
+              alt="LEGO brick"
+              className="lego lego2"
+            />
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/lego-up.svg" width="70" height="122" alt="LEGO brick" className="lego lego3" />
+            <img
+              src="/images/lego-up.svg"
+              width="70"
+              height="122"
+              alt="LEGO brick"
+              className="lego lego3"
+            />
           </div>
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/lego-up.svg" width="70" height="122" alt="LEGO brick" className="lego lego4" />
+            <img
+              src="/images/lego-up.svg"
+              width="70"
+              height="122"
+              alt="LEGO brick"
+              className="lego lego4"
+            />
           </div>
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/cross-stitch.svg" width="218" height="252" alt="cross stitch hoop embroidered with “Hello World” next to a spool of thread" className="cross-stitch" />
+            <img
+              src="/images/cross-stitch.svg"
+              width="218"
+              height="252"
+              alt="cross stitch hoop embroidered with “Hello World” next to a spool of thread"
+              className="cross-stitch"
+            />
           </div>
         </section>
         <section className="parallax-group backburner">
@@ -363,13 +548,21 @@ const NiceLandingPage = () => {
             <div className="content">
               <h2>You could take items off the backburner.</h2>
               <p>Matterday is the new “someday.”</p>
-              <p>Close those backlog issues, read that book, take that trip, learn that new skill.</p>
+              <p>
+                Close those backlog issues, read that book, take that trip, learn that new skill.
+              </p>
             </div>
           </div>
         </section>
         <section className="parallax-group pieces backburner-pieces">
           <div className="parallax-layer foreground layer-1 todo-list-container">
-            <img src="/images/todo-list.svg" width="350" height="752" alt="a Trello todo list with “Someday” crossed out and “Now” as the new header, items on the list include Read new book, Crush tech debt, and Dream vacation" className="todo-list" />
+            <img
+              src="/images/todo-list.svg"
+              width="350"
+              height="752"
+              alt="a Trello todo list with “Someday” crossed out and “Now” as the new header, items on the list include Read new book, Crush tech debt, and Dream vacation"
+              className="todo-list"
+            />
           </div>
         </section>
         <section className="parallax-group big-swings">
@@ -380,7 +573,9 @@ const NiceLandingPage = () => {
             <div className="content">
               <h2>You could take big swings.</h2>
               <p>What kind of world do you want to make?</p>
-              <p>Maybe it’s a risky project, turning the ship at work, or finding a brand new path.</p>
+              <p>
+                Maybe it’s a risky project, turning the ship at work, or finding a brand new path.
+              </p>
               <p>What could more time make possible?</p>
             </div>
           </div>
@@ -390,10 +585,22 @@ const NiceLandingPage = () => {
             <div className="pinata-string"></div>
           </div>
           <div className="parallax-layer foreground layer-2">
-            <img src="/images/pinata.svg" width="341" height="400" alt="a colorful donkey piñata" className="pinata" />
+            <img
+              src="/images/pinata.svg"
+              width="341"
+              height="400"
+              alt="a colorful donkey piñata"
+              className="pinata"
+            />
           </div>
           <div className="parallax-layer foreground layer-1">
-            <img src="/images/pinata-pizza.svg" width="354" height="600" alt="lots of pizza slices falling through the air" className="pinata-pizza" />
+            <img
+              src="/images/pinata-pizza.svg"
+              width="354"
+              height="600"
+              alt="lots of pizza slices falling through the air"
+              className="pinata-pizza"
+            />
           </div>
         </section>
         <section id="share" className="parallax-group section-cta">
@@ -403,10 +610,16 @@ const NiceLandingPage = () => {
               <Form />
               <noscript>
                 <h2>So tell us, what does your Matterday look like?</h2>
-                <p>Enable JavaScript to submit! <br/ >Or add #Matterday to a social media post.</p>
+                <p>
+                  Enable JavaScript to submit! <br />
+                  Or add #Matterday to a social media post.
+                </p>
                 <div className="nudge">
                   <p>
-                    Need some inspiration? <Link href="/matters"><a>See what others are saying.</a></Link>
+                    Need some inspiration?{' '}
+                    <Link href="/matters">
+                      <a>See what others are saying.</a>
+                    </Link>
                   </p>
                 </div>
               </noscript>
@@ -415,7 +628,7 @@ const NiceLandingPage = () => {
         </section>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default NiceLandingPage;
+export default NiceLandingPage
