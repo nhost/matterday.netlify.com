@@ -36,6 +36,13 @@ object_relationships:
 - name: defaultRoleByRole
   using:
     foreign_key_constraint_on: default_role
+- name: profile
+  using:
+    foreign_key_constraint_on:
+      column: id
+      table:
+        name: profiles
+        schema: public
 array_relationships:
 - name: matters
   using:
@@ -80,4 +87,19 @@ select_permissions:
     - display_name
     - id
     filter: {}
+    limit: 0
   role: user
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  headers:
+  - name: nhost-webhook-secret
+    value_from_env: NHOST_WEBHOOK_SECRET
+  name: users-insert-github
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 5
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/events/users/insert/github"

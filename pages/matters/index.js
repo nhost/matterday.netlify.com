@@ -17,6 +17,10 @@ export const getStaticProps = async () => {
           id
           avatarUrl
           displayName
+          profile {
+            id
+            githubLogin
+          }
         }
       }
     }

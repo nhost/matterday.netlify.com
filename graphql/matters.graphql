@@ -1,0 +1,21 @@
+fragment matter on matters {
+  id
+  content
+  user {
+    id
+    avatarUrl
+    displayName
+  }
+}
+
+query getMatter($id: uuid!) {
+  matter: matters_by_pk(id: $id) {
+    ...matter
+  }
+}
+
+mutation insertMatter($matter: matters_insert_input!) {
+  insert_matters_one(object: $matter) {
+    id
+  }
+}

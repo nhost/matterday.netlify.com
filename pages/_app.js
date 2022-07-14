@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { QueryClientProvider, QueryClient } from 'react-query'
+import { NhostNextProvider } from '@nhost/nextjs'
 
 import 'styles/main.css'
 import 'styles/variables.css'
@@ -22,8 +24,9 @@ import 'styles/section-cta.css'
 import 'styles/custom-page.css'
 import 'styles/error-page.css'
 import 'styles/admin.css'
-import { NhostNextProvider } from '@nhost/nextjs'
 import { nhost } from 'utils/nhost'
+
+const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -59,7 +62,9 @@ function MyApp({ Component, pageProps }) {
         ></iframe>
       </noscript>
       <NhostNextProvider nhost={nhost}>
-        <Component {...pageProps} />
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
       </NhostNextProvider>
     </>
   )

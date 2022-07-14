@@ -1,0 +1,8 @@
+query getUser($id: uuid!) {
+  user(id: $id) {
+    id
+    userProviders(where: { providerId: { _eq: "github" } }) {
+      accessToken
+    }
+  }
+}

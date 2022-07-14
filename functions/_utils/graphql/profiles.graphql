@@ -1,0 +1,5 @@
+mutation insertProfile($profile: profiles_insert_input!) {
+  insert_profiles(objects: [$profile]) {
+    affected_rows
+  }
+}

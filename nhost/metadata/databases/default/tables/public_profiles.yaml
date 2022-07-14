@@ -1,0 +1,26 @@
+table:
+  name: profiles
+  schema: public
+configuration:
+  custom_column_names:
+    github_login: githubLogin
+  custom_root_fields: {}
+object_relationships:
+- name: user
+  using:
+    foreign_key_constraint_on: id
+select_permissions:
+- permission:
+    columns:
+    - github_login
+    - id
+    filter: {}
+    limit: 0
+  role: public
+- permission:
+    columns:
+    - github_login
+    - id
+    filter: {}
+    limit: 0
+  role: user

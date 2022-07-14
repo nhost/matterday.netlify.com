@@ -3,7 +3,13 @@ import Link from 'next/link'
 import Header from './header'
 import ShareAnchor from './share-anchor'
 
-const NiceMatter = ({ matter }) => {
+import { MatterFragment } from 'utils/__generated__/graphql'
+
+type NiceMatterProps = {
+  matter: MatterFragment
+}
+
+const NiceMatter = ({ matter }: NiceMatterProps) => {
   return (
     <>
       <Head>
