@@ -25,6 +25,7 @@ import 'styles/custom-page.css'
 import 'styles/error-page.css'
 import 'styles/admin.css'
 import { nhost } from 'utils/nhost'
+import { Hydrate } from 'react-query'
 
 const queryClient = new QueryClient()
 

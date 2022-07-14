@@ -3998,7 +3998,7 @@ export type UserQueryVariables = Exact<{
 
 export type UserQuery = { __typename?: 'query_root', user?: { __typename?: 'users', id: any, displayName: string, avatarUrl: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } | null };
 
-export const MatterFragmentDoc = `
+export const MatterFragmentDoc = /*#__PURE__*/ `
     fragment matter on matters {
   id
   content
@@ -4013,7 +4013,7 @@ export const MatterFragmentDoc = `
   }
 }
     `;
-export const GetMatterDocument = `
+export const GetMatterDocument = /*#__PURE__*/ `
     query getMatter($id: uuid!) {
   matter: matters_by_pk(id: $id) {
     ...matter
@@ -4032,7 +4032,7 @@ export const useGetMatterQuery = <
       fetchData<GetMatterQuery, GetMatterQueryVariables>(GetMatterDocument, variables),
       options
     );
-export const GetMattersDocument = `
+export const GetMattersDocument = /*#__PURE__*/ `
     query getMatters {
   matters(order_by: {created_at: asc}, limit: 1000) {
     ...matter
@@ -4051,7 +4051,7 @@ export const useGetMattersQuery = <
       fetchData<GetMattersQuery, GetMattersQueryVariables>(GetMattersDocument, variables),
       options
     );
-export const InsertMatterDocument = `
+export const InsertMatterDocument = /*#__PURE__*/ `
     mutation insertMatter($matter: matters_insert_input!) {
   insert_matters_one(object: $matter) {
     id
@@ -4067,7 +4067,7 @@ export const useInsertMatterMutation = <
       (variables?: InsertMatterMutationVariables) => fetchData<InsertMatterMutation, InsertMatterMutationVariables>(InsertMatterDocument, variables)(),
       options
     );
-export const UserDocument = `
+export const UserDocument = /*#__PURE__*/ `
     query user($id: uuid!) {
   user(id: $id) {
     id

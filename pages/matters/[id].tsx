@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import NiceMatter from 'components/nice-matter'
-import { useGetMatterQuery } from 'utils/__generated__/graphql'
+import { useGetMatterQuery, useGetMattersQuery } from 'utils/__generated__/graphql'
 import { useAuthenticationStatus } from '@nhost/react'
 
 const Matter = () => {
