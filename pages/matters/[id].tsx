@@ -1,17 +1,21 @@
 import { useRouter } from 'next/router'
 import NiceMatter from 'components/nice-matter'
 import { useGetMatterQuery } from 'utils/__generated__/graphql'
+import { useAuthenticationStatus } from '@nhost/react'
 
 const Matter = () => {
   const router = useRouter()
   const { id } = router.query
 
-  const { data, isLoading, isError, error } = useGetMatterQuery(
+  const { isLoading: authIsLoading } = useAuthenticationStatus()
+
+  // wait until we know if the user is signed in or not to fetch the matter
+  const { data, isLoading } = useGetMatterQuery(
     {
       id
     },
     {
-      enabled: !!id
+      enabled: !authIsLoading
     }
   )
 

@@ -43,29 +43,15 @@ const MatterForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!user) {
-      console.log('user is not signed in')
-      return
+    try {
+      await insertMatterMutation.mutate({
+        matter: {
+          content: matter
+        }
+      })
+    } catch (error) {
+      alert(error)
     }
-
-    const ret = await insertMatterMutation.mutate({
-      matter: {
-        content: matter
-      }
-    })
-
-    alert('ok')
-    console.log(ret)
-
-    console.log(insertMatterMutation.isError)
-    console.log(insertMatterMutation.data)
-
-    if (insertMatterMutation.isError) {
-      return
-    }
-
-    // const newMatter = insertMatterMutation.data?.insert_matters_one?.id
-    // router.push(`/matters/${newMatter.id}`)
   }
 
   const handleSignOut = async () => {

@@ -23,7 +23,7 @@ const getOgImage = (matter: MatterFragment) => {
 
 const NiceMatter = ({ matter }: NiceMatterProps) => {
   if (!matter.user.profile) {
-    return
+    return <></>
   }
 
   const ogImage = getOgImage(matter)
