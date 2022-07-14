@@ -11,6 +11,7 @@ type NiceMatterProps = {
 
 const getOgImage = (matter: MatterFragment) => {
   if (!matter.user.profile) {
+    console.log('no profile')
     return
   }
 
@@ -27,6 +28,8 @@ const NiceMatter = ({ matter }: NiceMatterProps) => {
   }
 
   const ogImage = getOgImage(matter)
+
+  console.log({ ogImage })
 
   return (
     <>
