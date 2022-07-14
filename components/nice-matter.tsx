@@ -28,14 +28,23 @@ const NiceMatter = ({ matter }: NiceMatterProps) => {
           <div className="container">
             <div>
               <div className="eyebrow">
-                <img
-                  src={matter.user.avatarUrl}
-                  className="gh-avatar"
-                  alt={matter.user.displayName}
-                  width="100"
-                  height="100"
-                />
-                <span className="gh-username">{matter.user.displayName}</span>
+                <a href={`https://github.com/${matter.user.profile?.githubLogin}`}>
+                  <img
+                    src={matter.user.avatarUrl}
+                    className="gh-avatar"
+                    alt={matter.user.profile?.githubLogin}
+                    width="100"
+                    height="100"
+                    loading="lazy"
+                  />
+                </a>
+
+                <span className="gh-username">
+                  @
+                  <a href={`https://github.com/${matter.user.profile.githubLogin}`}>
+                    {matter.user.profile?.githubLogin}
+                  </a>
+                </span>
               </div>
               <h1>
                 <span className="prompt">If I had an extra day a week I could…</span>

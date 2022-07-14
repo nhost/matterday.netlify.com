@@ -3970,14 +3970,14 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
-export type MatterFragment = { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string } };
+export type MatterFragment = { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } };
 
 export type GetMatterQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetMatterQuery = { __typename?: 'query_root', matter?: { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string } } | null };
+export type GetMatterQuery = { __typename?: 'query_root', matter?: { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } } | null };
 
 export type InsertMatterMutationVariables = Exact<{
   matter: Matters_Insert_Input;
@@ -4001,6 +4001,10 @@ export const MatterFragmentDoc = `
     id
     avatarUrl
     displayName
+    profile {
+      id
+      githubLogin
+    }
   }
 }
     `;

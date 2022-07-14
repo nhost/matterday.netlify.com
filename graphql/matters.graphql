@@ -5,6 +5,10 @@ fragment matter on matters {
     id
     avatarUrl
     displayName
+    profile {
+      id
+      githubLogin
+    }
   }
 }
 

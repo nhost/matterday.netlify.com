@@ -15,8 +15,6 @@ const Matter = () => {
     }
   )
 
-  console.log({ data, isLoading, isError, error })
-
   if (!data || isLoading) {
     return <div>Loading...</div>
   }
