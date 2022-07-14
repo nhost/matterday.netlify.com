@@ -3,8 +3,13 @@ import NiceSignInForm from 'components/nice-sign-in-form'
 import { useAuthenticationStatus } from '@nhost/nextjs'
 
 const Form = () => {
-  const { isAuthenticated } = useAuthenticationStatus()
-  return isAuthenticated ? <NiceMatterForm /> : <NiceSignInForm />
+  const { isAuthenticated, isLoading } = useAuthenticationStatus()
+
+  if (isLoading || !isAuthenticated) {
+    return <NiceSignInForm />
+  }
+
+  return <NiceMatterForm />
 }
 
 export default Form

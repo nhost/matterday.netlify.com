@@ -45,7 +45,7 @@ const NiceMatter = ({ matter }: NiceMatterProps) => {
                 <p>
                   <a
                     href={
-                      'https://twitter.com/intent/tweet?text=Matterday is the new “someday.” Here’s what I’d do if I had an extra day a week.&hashtags=Matterday&url=https://matterday.netlify.com/matters/' +
+                      'https://twitter.com/intent/tweet?text=Matterday is the new “someday.” Here’s what I’d do if I had an extra day a week.&hashtags=Matterday&url=https://matterday-nhost.netlify.com/matters/' +
                       matter.id
                     }
                   >

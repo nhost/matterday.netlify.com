@@ -16,9 +16,6 @@ export const fetchData = <TData, TVariables>(
       authHeaders['authorization'] = `Bearer ${nhost.auth.getAccessToken()}`
     }
 
-    console.log('in fetch data')
-    console.log({ authHeaders })
-
     const res = await fetch(nhost.graphql.getUrl(), {
       method: 'POST',
       headers: {

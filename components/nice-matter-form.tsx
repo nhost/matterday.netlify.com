@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Filter from 'bad-words'
 import Link from 'next/link'
 import { nhost } from 'utils/nhost'
@@ -7,31 +7,37 @@ import { useInsertMatterMutation, useUserQuery } from 'utils/__generated__/graph
 
 const MatterForm = () => {
   const [matter, setMatter] = useState('')
-  const [isRude, setIsRude] = useState(false)
-  const filter = new Filter()
   const router = useRouter()
 
   const userSdk = nhost.auth.getUser()
 
-  const { data, isLoading } = useUserQuery(
+  const { data, isSuccess, refetch } = useUserQuery(
     {
       id: userSdk?.id
     },
     {
-      refetchInterval: 500,
       enabled: !!userSdk?.id
     }
   )
+
+  useEffect(() => {
+    // refetch query if `githhubLogin` is not yet populated.
+    if (isSuccess && !data.user?.profile?.githubLogin) {
+      console.log('refetching query')
+      refetch()
+    }
+  })
+
   const insertMatterMutation = useInsertMatterMutation()
 
   if (!data) {
-    return <div>User is not signed in</div>
+    return <div>No data received</div>
   }
 
   const { user } = data
 
   if (!user) {
-    return <div>User is not signed in</div>
+    return <div>Unable to fetch user</div>
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,6 +70,10 @@ const MatterForm = () => {
 
   const handleSignOut = async () => {
     await nhost.auth.signOut()
+  }
+
+  if (insertMatterMutation.data?.insert_matters_one?.id) {
+    router.push(`/matters/${insertMatterMutation.data.insert_matters_one.id}`)
   }
 
   return (
