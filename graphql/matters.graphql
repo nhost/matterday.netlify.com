@@ -18,6 +18,12 @@ query getMatter($id: uuid!) {
   }
 }
 
+query getMatters {
+  matters(order_by: { created_at: asc }, limit: 1000) {
+    ...matter
+  }
+}
+
 mutation insertMatter($matter: matters_insert_input!) {
   insert_matters_one(object: $matter) {
     id

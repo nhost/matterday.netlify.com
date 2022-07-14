@@ -3979,6 +3979,11 @@ export type GetMatterQueryVariables = Exact<{
 
 export type GetMatterQuery = { __typename?: 'query_root', matter?: { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } } | null };
 
+export type GetMattersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMattersQuery = { __typename?: 'query_root', matters: Array<{ __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } }> };
+
 export type InsertMatterMutationVariables = Exact<{
   matter: Matters_Insert_Input;
 }>;
@@ -4025,6 +4030,25 @@ export const useGetMatterQuery = <
     useQuery<GetMatterQuery, TError, TData>(
       ['getMatter', variables],
       fetchData<GetMatterQuery, GetMatterQueryVariables>(GetMatterDocument, variables),
+      options
+    );
+export const GetMattersDocument = `
+    query getMatters {
+  matters(order_by: {created_at: asc}, limit: 1000) {
+    ...matter
+  }
+}
+    ${MatterFragmentDoc}`;
+export const useGetMattersQuery = <
+      TData = GetMattersQuery,
+      TError = unknown
+    >(
+      variables?: GetMattersQueryVariables,
+      options?: UseQueryOptions<GetMattersQuery, TError, TData>
+    ) =>
+    useQuery<GetMattersQuery, TError, TData>(
+      variables === undefined ? ['getMatters'] : ['getMatters', variables],
+      fetchData<GetMattersQuery, GetMattersQueryVariables>(GetMattersDocument, variables),
       options
     );
 export const InsertMatterDocument = `

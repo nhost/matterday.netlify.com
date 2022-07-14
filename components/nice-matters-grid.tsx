@@ -1,9 +1,14 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { MatterFragment } from 'utils/__generated__/graphql'
 import Header from './header'
 import ShareAnchor from './share-anchor'
 
-const NiceMattersGrid = ({ matters }) => {
+type NiceMattersGridProps = {
+  matters: MatterFragment[]
+}
+
+const NiceMattersGrid = ({ matters }: NiceMattersGridProps) => {
   return (
     <>
       <Head>
@@ -47,33 +52,39 @@ const NiceMattersGrid = ({ matters }) => {
               </p>
             </div>
           </div>
-          {matters.map((matter) => (
-            <div key={matter.id} className="matter-item">
-              <div className="eyebrow">
-                <a href={`https://github.com/${matter.user.profile.githubLogin}`}>
-                  <img
-                    src={matter.user.avatarUrl}
-                    className="gh-avatar"
-                    alt={matter.user.profile.githubLogin}
-                    width="100"
-                    height="100"
-                    loading="lazy"
-                  />
-                </a>
+          {matters.map((matter) => {
+            if (!matter.user.profile) {
+              return
+            }
 
-                <span className="gh-username">
-                  @
+            return (
+              <div key={matter.id} className="matter-item">
+                <div className="eyebrow">
                   <a href={`https://github.com/${matter.user.profile.githubLogin}`}>
-                    {matter.user.profile.githubLogin}
+                    <img
+                      src={matter.user.avatarUrl}
+                      className="gh-avatar"
+                      alt={matter.user.profile.githubLogin}
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                    />
                   </a>
-                </span>
+
+                  <span className="gh-username">
+                    @
+                    <a href={`https://github.com/${matter.user.profile.githubLogin}`}>
+                      {matter.user.profile.githubLogin}
+                    </a>
+                  </span>
+                </div>
+                <h2>
+                  <span className="prompt">If I had an extra day a week I could...</span>
+                  <span className="answer">{matter.content}</span>
+                </h2>
               </div>
-              <h2>
-                <span className="prompt">If I had an extra day a week I could...</span>
-                <span className="answer">{matter.content}</span>
-              </h2>
-            </div>
-          ))}
+            )
+          })}
           <footer className="credit">
             <p className="built-with">
               Matterday is built with{' '}
