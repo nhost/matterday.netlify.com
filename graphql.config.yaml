@@ -12,6 +12,8 @@ generates:
       - 'typescript-react-query'
     config:
       pureMagicComment: true
+      exposeQueryKeys: true
+      exposeFetcher: true
       fetcher:
         func: '../gql-fetcher#fetchData'
         isReactHook: false

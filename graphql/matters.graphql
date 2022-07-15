@@ -1,6 +1,7 @@
 fragment matter on matters {
   id
   content
+  status
   user {
     id
     avatarUrl

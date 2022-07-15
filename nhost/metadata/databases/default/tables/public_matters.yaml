@@ -23,9 +23,8 @@ select_permissions:
     - status
     - updated_at
     - user_id
-    filter:
-      status:
-        _eq: approved
+    filter: {}
+    limit: 500
   role: public
 - permission:
     columns:
@@ -35,10 +34,6 @@ select_permissions:
     - content
     - user_id
     - status
-    filter:
-      _or:
-      - user_id:
-          _eq: X-Hasura-User-Id
-      - status:
-          _eq: approved
+    filter: {}
+    limit: 500
   role: user

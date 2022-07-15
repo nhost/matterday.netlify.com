@@ -1,23 +1,36 @@
 import { useRouter } from 'next/router'
 import NiceMatter from 'components/nice-matter'
-import { useGetMatterQuery, useGetMattersQuery } from 'utils/__generated__/graphql'
-import { useAuthenticationStatus } from '@nhost/react'
+import { useGetMatterQuery } from 'utils/__generated__/graphql'
+import { dehydrate, QueryClient } from 'react-query'
+
+type SSRProps = {
+  params: {
+    id: string
+  }
+}
+
+export const getServerSideProps = async ({ params: { id } }: SSRProps) => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(
+    useGetMatterQuery.getKey({ id }),
+    useGetMatterQuery.fetcher({ id })
+  )
+
+  return {
+    props: {
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient)))
+    }
+  }
+}
 
 const Matter = () => {
   const router = useRouter()
   const { id } = router.query
 
-  const { isLoading: authIsLoading } = useAuthenticationStatus()
-
-  // wait until we know if the user is signed in or not to fetch the matter
-  const { data, isLoading } = useGetMatterQuery(
-    {
-      id
-    },
-    {
-      enabled: !authIsLoading
-    }
-  )
+  const { data, isLoading } = useGetMatterQuery({
+    id
+  })
 
   if (!data || isLoading) {
     return <div>Loading...</div>

@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { NhostNextProvider } from '@nhost/nextjs'
@@ -27,9 +28,8 @@ import 'styles/admin.css'
 import { nhost } from 'utils/nhost'
 import { Hydrate } from 'react-query'
 
-const queryClient = new QueryClient()
-
 function MyApp({ Component, pageProps }) {
+  const [queryClient] = React.useState(() => new QueryClient())
   return (
     <>
       <Head>
@@ -56,7 +56,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <NhostNextProvider nhost={nhost}>
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <Hydrate state={pageProps.dehydratedState}>
+            <Component {...pageProps} />
+          </Hydrate>
         </QueryClientProvider>
       </NhostNextProvider>
     </>

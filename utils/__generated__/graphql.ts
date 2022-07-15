@@ -3970,19 +3970,19 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
-export type MatterFragment = { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } };
+export type MatterFragment = { __typename?: 'matters', id: any, content: string, status: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } };
 
 export type GetMatterQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetMatterQuery = { __typename?: 'query_root', matter?: { __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } } | null };
+export type GetMatterQuery = { __typename?: 'query_root', matter?: { __typename?: 'matters', id: any, content: string, status: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } } | null };
 
 export type GetMattersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMattersQuery = { __typename?: 'query_root', matters: Array<{ __typename?: 'matters', id: any, content: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } }> };
+export type GetMattersQuery = { __typename?: 'query_root', matters: Array<{ __typename?: 'matters', id: any, content: string, status: string, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, profile?: { __typename?: 'profiles', id: any, githubLogin: string } | null } }> };
 
 export type InsertMatterMutationVariables = Exact<{
   matter: Matters_Insert_Input;
@@ -4002,6 +4002,7 @@ export const MatterFragmentDoc = /*#__PURE__*/ `
     fragment matter on matters {
   id
   content
+  status
   user {
     id
     avatarUrl
@@ -4032,6 +4033,11 @@ export const useGetMatterQuery = <
       fetchData<GetMatterQuery, GetMatterQueryVariables>(GetMatterDocument, variables),
       options
     );
+
+useGetMatterQuery.getKey = (variables: GetMatterQueryVariables) => ['getMatter', variables];
+;
+
+useGetMatterQuery.fetcher = (variables: GetMatterQueryVariables, options?: RequestInit['headers']) => fetchData<GetMatterQuery, GetMatterQueryVariables>(GetMatterDocument, variables, options);
 export const GetMattersDocument = /*#__PURE__*/ `
     query getMatters {
   matters(order_by: {created_at: asc}, limit: 1000) {
@@ -4051,6 +4057,11 @@ export const useGetMattersQuery = <
       fetchData<GetMattersQuery, GetMattersQueryVariables>(GetMattersDocument, variables),
       options
     );
+
+useGetMattersQuery.getKey = (variables?: GetMattersQueryVariables) => variables === undefined ? ['getMatters'] : ['getMatters', variables];
+;
+
+useGetMattersQuery.fetcher = (variables?: GetMattersQueryVariables, options?: RequestInit['headers']) => fetchData<GetMattersQuery, GetMattersQueryVariables>(GetMattersDocument, variables, options);
 export const InsertMatterDocument = /*#__PURE__*/ `
     mutation insertMatter($matter: matters_insert_input!) {
   insert_matters_one(object: $matter) {
@@ -4067,6 +4078,7 @@ export const useInsertMatterMutation = <
       (variables?: InsertMatterMutationVariables) => fetchData<InsertMatterMutation, InsertMatterMutationVariables>(InsertMatterDocument, variables)(),
       options
     );
+useInsertMatterMutation.fetcher = (variables: InsertMatterMutationVariables, options?: RequestInit['headers']) => fetchData<InsertMatterMutation, InsertMatterMutationVariables>(InsertMatterDocument, variables, options);
 export const UserDocument = /*#__PURE__*/ `
     query user($id: uuid!) {
   user(id: $id) {
@@ -4092,3 +4104,8 @@ export const useUserQuery = <
       fetchData<UserQuery, UserQueryVariables>(UserDocument, variables),
       options
     );
+
+useUserQuery.getKey = (variables: UserQueryVariables) => ['user', variables];
+;
+
+useUserQuery.fetcher = (variables: UserQueryVariables, options?: RequestInit['headers']) => fetchData<UserQuery, UserQueryVariables>(UserDocument, variables, options);
