@@ -59,8 +59,8 @@ auth:
       enabled: false
       scope: email,photos,displayName
     github:
-      client_id: '95ec75454a97cd3530cd'
-      client_secret: '100f5d77dddc3004360a26a7d5c63c51eee78e0a'
+      client_id: ''
+      client_secret: ''
       enabled: true
       scope: user:email
     google:
